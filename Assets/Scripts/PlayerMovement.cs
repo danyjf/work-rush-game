@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
     public float movementSpeed;
@@ -55,4 +56,23 @@ public class PlayerMovement : MonoBehaviour {
         playerCollider.offset = new Vector2(0, 0);
         playerCollider.size = new Vector2(1, 0.96f);
     } 
+
+    private void Lose() {
+        Debug.Log("Lose");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void Win() {
+        Debug.Log("Win");
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(other.gameObject.tag == "Obstacle")
+            Lose();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag == "Objective")
+            Win();
+    }
 }
