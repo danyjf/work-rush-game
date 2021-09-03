@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour {
     public Transform groundChecker;
     public float jumpForce;
     public AudioClip jumpSound;
+    public AudioClip slideSound;
     
     private bool isGrounded;
     private float groundCheckerRadius = 0.2f;
@@ -42,12 +43,16 @@ public class PlayerMovement : MonoBehaviour {
         if(isGrounded && Input.GetKeyDown(KeyCode.Space)) {
             audioSource.clip = jumpSound;
             audioSource.Play();
+            
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
 
     private void Crouch() {
         if(Input.GetKey(KeyCode.LeftControl)) {
+            audioSource.clip = slideSound;
+            audioSource.Play();
+
             StartCoroutine(CrouchCoroutine());
         }
     }
