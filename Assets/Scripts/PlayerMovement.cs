@@ -8,16 +8,19 @@ public class PlayerMovement : MonoBehaviour {
     public LayerMask groundLayer;
     public Transform groundChecker;
     public float jumpForce;
+    public AudioClip jumpSound;
     
     private bool isGrounded;
     private float groundCheckerRadius = 0.2f;
     
     private Rigidbody2D rb;
     private CapsuleCollider2D playerCollider;
+    private AudioSource audioSource;
 
     private void Start() {
         rb = transform.GetComponent<Rigidbody2D>();
         playerCollider = transform.GetComponent<CapsuleCollider2D>();
+        audioSource = transform.GetComponent<AudioSource>();
     }
 
     private void Update() {
@@ -37,6 +40,8 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Jump() {
         if(isGrounded && Input.GetKeyDown(KeyCode.Space)) {
+            audioSource.clip = jumpSound;
+            audioSource.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
