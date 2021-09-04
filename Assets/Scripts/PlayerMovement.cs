@@ -13,15 +13,17 @@ public class PlayerMovement : MonoBehaviour {
     
     private bool isGrounded;
     private float groundCheckerRadius = 0.2f;
-    
+    private bool isCrouching = false;
     private Rigidbody2D rb;
     private CapsuleCollider2D playerCollider;
     private AudioSource audioSource;
+    private Animator animator;
 
     private void Start() {
         rb = transform.GetComponent<Rigidbody2D>();
         playerCollider = transform.GetComponent<CapsuleCollider2D>();
         audioSource = transform.GetComponent<AudioSource>();
+        animator = transform.GetComponent<Animator>();
     }
 
     private void Update() {
@@ -37,6 +39,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void IsGrounded() {
         isGrounded = Physics2D.OverlapCircle(groundChecker.position, groundCheckerRadius, groundLayer);
+        animator.SetBool("Jump", !isGrounded);
     }
 
     private void Jump() {
@@ -49,7 +52,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void Crouch() {
-        if(Input.GetKey(KeyCode.LeftControl)) {
+        if(Input.GetKey(KeyCode.LeftControl) && !isCrouching) {
             audioSource.clip = slideSound;
             audioSource.Play();
 
@@ -58,13 +61,19 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private IEnumerator CrouchCoroutine() {
-        playerCollider.offset = new Vector2(0, -0.23f);
-        playerCollider.size = new Vector2(1, 0.48f);
+        isCrouching = true;
+        animator.SetBool("Crouch", isCrouching);
+
+        playerCollider.offset = new Vector2(-0.005334139f, -0.03735948f);
+        playerCollider.size = new Vector2(0.06106615f, 0.06106615f);
 
         yield return new WaitForSeconds(1.5f);
 
-        playerCollider.offset = new Vector2(0, 0);
-        playerCollider.size = new Vector2(1, 0.96f);
+        playerCollider.offset = new Vector2(-0.005334139f, -0.009514809f);
+        playerCollider.size = new Vector2(0.06106615f, 0.1167555f);
+
+        isCrouching = false;
+        animator.SetBool("Crouch", isCrouching);
     } 
 
     private void Lose() {

@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4276889246635624719}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: -0.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4276889246917023539}
@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 4276889246917023538}
   - component: {fileID: 4276889246917023536}
   - component: {fileID: 1808794635}
+  - component: {fileID: 1340520798}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -60,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 4276889246917023541}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.72, y: -3.38, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4276889246635624718}
   m_Father: {fileID: 0}
@@ -106,7 +107,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Sprite: {fileID: -5734630840053465218, guid: a3e99f11a97898f408fb0374f7a84d22, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -130,8 +131,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 0.96}
+  m_Offset: {x: -0.005334139, y: -0.009514809}
+  m_Size: {x: 0.06106615, y: 0.116755486}
   m_Direction: 0
 --- !u!50 &4276889246917023538
 Rigidbody2D:
@@ -148,7 +149,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 0.75
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -166,12 +167,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f356e9589d511a41bc87c7dcf4a39a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 8
+  movementSpeed: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
   groundChecker: {fileID: 4276889246635624718}
-  jumpForce: 12
+  jumpForce: 2.25
   jumpSound: {fileID: 8300000, guid: 23deabafbe7d7684d9cf265d547e5861, type: 3}
   slideSound: {fileID: 8300000, guid: fd23866d6dad2184dbe860bcdb799893, type: 3}
 --- !u!82 &1808794635
@@ -194,7 +195,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.05431032
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -270,3 +271,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1340520798
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4276889246917023541}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 26229b5888682044e9de2ca20280df56, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
