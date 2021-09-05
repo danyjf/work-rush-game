@@ -175,6 +175,7 @@ MonoBehaviour:
   jumpForce: 2.25
   jumpSound: {fileID: 8300000, guid: 23deabafbe7d7684d9cf265d547e5861, type: 3}
   slideSound: {fileID: 8300000, guid: fd23866d6dad2184dbe860bcdb799893, type: 3}
+  winPanel: {fileID: 0}
 --- !u!82 &1808794635
 AudioSource:
   m_ObjectHideFlags: 0

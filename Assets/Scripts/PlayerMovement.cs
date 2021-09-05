@@ -10,9 +10,10 @@ public class PlayerMovement : MonoBehaviour {
     public float jumpForce;
     public AudioClip jumpSound;
     public AudioClip slideSound;
+    public GameObject winPanel;
     
     private bool isGrounded;
-    private float groundCheckerRadius = 0.2f;
+    private float groundCheckerRadius = 0.02f;
     private bool isCrouching = false;
     private Rigidbody2D rb;
     private CapsuleCollider2D playerCollider;
@@ -43,7 +44,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void Jump() {
-        if(isGrounded && Input.GetKeyDown(KeyCode.Space)) {
+        if(isGrounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))) {
             audioSource.clip = jumpSound;
             audioSource.Play();
             
@@ -52,7 +53,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void Crouch() {
-        if(Input.GetKey(KeyCode.LeftControl) && !isCrouching) {
+        if((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && !isCrouching) {
             audioSource.clip = slideSound;
             audioSource.Play();
 
@@ -77,12 +78,12 @@ public class PlayerMovement : MonoBehaviour {
     } 
 
     private void Lose() {
-        Debug.Log("Lose");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void Win() {
-        Debug.Log("Win");
+        movementSpeed = 0;
+        winPanel.SetActive(true);
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
